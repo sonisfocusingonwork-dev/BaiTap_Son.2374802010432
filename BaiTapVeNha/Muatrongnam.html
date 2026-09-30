@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các mùa trong năm</title>
+
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: "Times New Roman", serif;
+        }
+
+        h1 {
+            color: blue;
+            text-align: center;
+            font-size: 40px;
+        }
+
+        table {
+            width: 600px;
+            max-width: 100%;
+            margin: auto;
+        }
+
+        td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        a {
+            font-size: 20px;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CÁC MÙA TRONG NĂM</h1>
+
+    <table border="2">
+        <tr>
+            <td>
+                <a href="muaxuan.html" target="main">Mùa xuân</a>
+            </td>
+            <td>
+                <a href="muaha.html" target="main">Mùa hạ</a>
+            </td>
+            <td>
+                <a href="muathu.html" target="main">Mùa thu</a>
+            </td>
+            <td>
+                <a href="muadong.html" target="main">Mùa đông</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="4">
+                <iframe
+                    name="main"
+                    src="muaxuan.html"
+                    title="Thông tin các mùa">
+                </iframe>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

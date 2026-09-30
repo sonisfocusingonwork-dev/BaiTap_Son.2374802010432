@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Times New Roman", serif;
+            font-size: 20px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 320px;
+            padding: 7px;
+            font-size: 18px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"] {
+            width: 17px;
+            height: 17px;
+        }
+
+        select {
+            padding: 5px;
+            font-size: 18px;
+        }
+
+        input[type="submit"] {
+            padding: 6px 18px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#" method="post">
+        <table cellspacing="0">
+            <tr>
+                <td><label for="name">Enter name:</label></td>
+                <td>
+                    <input type="text" id="name" name="name">
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="password">Enter password:</label></td>
+                <td>
+                    <input type="password" id="password" name="password">
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="email">Enter Email:</label></td>
+                <td>
+                    <input type="email" id="email" name="email">
+                </td>
+            </tr>
+
+            <tr>
+                <td>Enter Gender:</td>
+                <td>
+                    <label>
+                        <input type="radio" name="gender" value="male">
+                        male
+                    </label>
+
+                    <label>
+                        <input type="radio" name="gender" value="female">
+                        female
+                    </label>
+                </td>
+            </tr>
+
+            <tr>
+                <td><label for="country">Select Country:</label></td>
+                <td>
+                    <select id="country" name="country">
+                        <option value="India">India</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Korea">Korea</option>
+                        <option value="Thailand">Thailand</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td align="right">
+                    <input type="submit" value="register">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
