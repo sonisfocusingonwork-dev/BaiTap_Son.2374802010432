@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 1 - Kiểm tra số chẵn – số lẻ</title>
+</head>
+<body>
+    <h2>Bài 1. Kiểm tra số chẵn – số lẻ</h2>
+
+    <label for="so">Nhập số nguyên:</label>
+    <input type="number" id="so" step="1">
+    <br><br>
+    <button type="button" onclick="kiemTra()">Kiểm tra</button>
+
+    <p id="ketqua" aria-live="polite"></p>
+
+    <script>
+        function kiemTra() {
+            let duLieu = document.getElementById("so").value;
+            let so = Number(duLieu);
+            let ketQua = document.getElementById("ketqua");
+
+            if (duLieu === "" || !Number.isSafeInteger(so)) {
+                ketQua.textContent = "Vui lòng nhập số nguyên hợp lệ!";
+                return;
+            }
+
+            if (so % 2 === 0) {
+                ketQua.textContent = so + " là số chẵn.";
+            } else {
+                ketQua.textContent = so + " là số lẻ.";
+            }
+        }
+    </script>
+</body>
+</html>

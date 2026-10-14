@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 14 - Tính chỉ số BMI</title>
+</head>
+<body>
+    <h2>Bài 14. Tính chỉ số BMI</h2>
+
+    <label for="chieuCao">Nhập chiều cao (m):</label>
+    <input type="number" id="chieuCao" min="0" step="any">
+    <br><br>
+    <label for="canNang">Nhập cân nặng (kg):</label>
+    <input type="number" id="canNang" min="0" step="any">
+    <br><br>
+    <button type="button" onclick="tinhBMI()">Tính BMI</button>
+
+    <p id="ketqua" aria-live="polite"></p>
+
+    <script>
+        function tinhBMI() {
+            let duLieuCao = document.getElementById("chieuCao").value;
+            let duLieuNang = document.getElementById("canNang").value;
+            let chieuCao = Number(duLieuCao);
+            let canNang = Number(duLieuNang);
+            let ketQua = document.getElementById("ketqua");
+
+            if (duLieuCao === "" || duLieuNang === "" ||
+                !Number.isFinite(chieuCao) || !Number.isFinite(canNang) ||
+                chieuCao <= 0 || canNang <= 0) {
+                ketQua.textContent = "Vui lòng nhập chiều cao và cân nặng là các số lớn hơn 0!";
+                return;
+            }
+
+            let bmi = canNang / (chieuCao * chieuCao);
+            if (!Number.isFinite(bmi) || bmi <= 0) {
+                ketQua.textContent = "Dữ liệu vượt quá giới hạn tính toán!";
+                return;
+            }
+
+            // Đề không ghi ngưỡng: bài này dùng các mốc 18.5, 25 và 30.
+            // Phân loại theo BMI gốc, chỉ làm tròn khi hiển thị.
+            let ketLuan;
+            if (bmi < 18.5) {
+                ketLuan = "Gầy";
+            } else if (bmi < 25) {
+                ketLuan = "Bình thường";
+            } else if (bmi < 30) {
+                ketLuan = "Thừa cân";
+            } else {
+                ketLuan = "Béo phì";
+            }
+
+            ketQua.textContent = "BMI của bạn: " + bmi.toFixed(2) + ". Kết luận: " + ketLuan;
+        }
+    </script>
+</body>
+</html>

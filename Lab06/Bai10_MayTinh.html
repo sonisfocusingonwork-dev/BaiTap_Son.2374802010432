@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 10 - Máy tính đơn giản</title>
+</head>
+<body>
+    <h2>Bài 10. Máy tính đơn giản</h2>
+
+    <label for="soA">Nhập số thứ nhất:</label>
+    <input type="number" id="soA" step="any">
+    <br><br>
+    <label for="soB">Nhập số thứ hai:</label>
+    <input type="number" id="soB" step="any">
+    <br><br>
+    <button type="button" onclick="tinhToan('+')">Cộng</button>
+    <button type="button" onclick="tinhToan('-')">Trừ</button>
+    <button type="button" onclick="tinhToan('*')">Nhân</button>
+    <button type="button" onclick="tinhToan('/')">Chia</button>
+
+    <p id="ketqua" aria-live="polite"></p>
+
+    <script>
+        function tinhToan(phepTinh) {
+            let duLieuA = document.getElementById("soA").value;
+            let duLieuB = document.getElementById("soB").value;
+            let a = Number(duLieuA);
+            let b = Number(duLieuB);
+            let ketQua = document.getElementById("ketqua");
+
+            if (duLieuA === "" || duLieuB === "" || !Number.isFinite(a) || !Number.isFinite(b)) {
+                ketQua.textContent = "Vui lòng nhập đầy đủ hai số hợp lệ!";
+                return;
+            }
+
+            let giaTri;
+            if (phepTinh === "+") {
+                giaTri = a + b;
+            } else if (phepTinh === "-") {
+                giaTri = a - b;
+            } else if (phepTinh === "*") {
+                giaTri = a * b;
+            } else {
+                if (b === 0) {
+                    ketQua.textContent = "Không thể chia cho 0!";
+                    return;
+                }
+                giaTri = a / b;
+            }
+
+            if (!Number.isFinite(giaTri)) {
+                ketQua.textContent = "Kết quả vượt quá giới hạn tính toán!";
+                return;
+            }
+            ketQua.textContent = a + " " + phepTinh + " " + b + " = " + giaTri;
+        }
+    </script>
+</body>
+</html>

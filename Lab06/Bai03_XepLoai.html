@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 3 - Xếp loại học lực</title>
+</head>
+<body>
+    <h2>Bài 3. Xếp loại học lực</h2>
+
+    <label for="diem">Nhập điểm (0–100):</label>
+    <input type="number" id="diem" min="0" max="100" step="any">
+    <br><br>
+    <button type="button" onclick="xepLoai()">Xếp loại</button>
+
+    <p id="ketqua" aria-live="polite"></p>
+
+    <script>
+        function xepLoai() {
+            let duLieu = document.getElementById("diem").value;
+            let diem = Number(duLieu);
+            let ketQua = document.getElementById("ketqua");
+
+            if (duLieu === "" || !Number.isFinite(diem) || diem < 0 || diem > 100) {
+                ketQua.textContent = "Vui lòng nhập điểm từ 0 đến 100!";
+                return;
+            }
+
+            let loai;
+            if (diem >= 90) {
+                loai = "A";
+            } else if (diem >= 80) {
+                loai = "B";
+            } else if (diem >= 70) {
+                loai = "C";
+            } else if (diem >= 60) {
+                loai = "D";
+            } else {
+                loai = "F";
+            }
+            ketQua.textContent = "Xếp loại học lực: " + loai;
+        }
+    </script>
+</body>
+</html>

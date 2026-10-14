@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Chuong trinh bat / tat bong den</h2>
+    <img id="bulb" width="120px" src="./bulboff.gif" alt="Light">
+    <br> <br>
+    <button onclick="togglelight()">Bat / Tat</button>
+    <!-- code javacrip o day  -->
+    <script>
+        function togglelight() {
+            //anh xa
+            let toggle = document.getElementById("bulb");
+            if (toggle.src.includes("bulboff")) {
+                toggle.src = "./bulbon.gif";
+            } else {
+                toggle.src = "./bulboff.gif";
+            }
+        }
+    </script>
+</body>
+</html>

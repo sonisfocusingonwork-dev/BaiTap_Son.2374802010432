@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>CHUONG TRINH TINH TUOI</h2>
+    <label for="">Nhap vao nam sinh cua ban</label>
+    <input type="number" id="namsinh">
+    <br> <br>
+    <button onclick ="tinhtuoi()">Tinh tuoi</button>
+    <p id="ketqua"></p>
+    <script>
+        function tinhtuoi() {
+            let YourBirth = document.getElementById("namsinh").value;
+            let CurrentYear = new Date().getFullYear();
+            let YourAge = CurrentYear - YourBirth;
+            document.getElementById("ketqua").innerHTML = "Tuoi cua ban la: " + YourAge;
+        }
+    </script>
+</body>
+</html>

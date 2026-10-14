@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 9 - Quay thưởng may mắn</title>
+</head>
+<body>
+    <h2>Bài 9. Quay thưởng may mắn</h2>
+
+    <button type="button" onclick="quayThuong()">Quay thưởng</button>
+
+    <p id="ketqua" aria-live="polite"></p>
+
+    <script>
+        function quayThuong() {
+            let phanQua = ["Một quyển vở", "Một cây bút", "Một chiếc ba lô", "Một chiếc cốc", "Một móc khóa"];
+            let viTri = Math.floor(Math.random() * phanQua.length);
+            document.getElementById("ketqua").textContent = "Bạn nhận được: " + phanQua[viTri] + "!";
+        }
+    </script>
+</body>
+</html>
