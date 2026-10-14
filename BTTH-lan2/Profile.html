@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Nguyễn Thành Vinh</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #edf2f7;
+            color: #263238;
+        }
+
+        .card {
+            width: 350px;
+            max-width: calc(100% - 32px);
+            margin: 50px auto;
+            padding: 30px 24px;
+            border: 1px solid #cbd5e1;
+            border-radius: 20px;
+            background-color: #ffffff;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 16px;
+            border: 4px solid #dbeafe;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        #name {
+            margin: 0 0 8px;
+            font-size: 28px;
+            line-height: 1.3;
+            color: #1e3a8a;
+        }
+
+        .job {
+            margin: 0 0 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #64748b;
+        }
+
+        .intro {
+            margin: 0 0 22px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .skills-title {
+            margin: 0 0 12px;
+            font-size: 18px;
+            color: #1e3a8a;
+        }
+
+        .skills {
+            margin: 0 0 24px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .skill {
+            display: inline-block;
+            margin: 4px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            font-size: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 10px;
+            background-color: #2563eb;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #1e40af;
+        }
+
+        .btn:focus-visible {
+            outline: 3px solid #93c5fd;
+            outline-offset: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <img
+            class="avatar"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23dbeafe'/%3E%3Ccircle cx='60' cy='43' r='22' fill='%232563eb'/%3E%3Cpath d='M20 120V104a40 40 0 0 1 80 0v16Z' fill='%232563eb'/%3E%3C/svg%3E"
+            alt="Ảnh đại diện minh họa của Nguyễn Thành Vinh"
+        >
+
+        <h1 id="name">Nguyễn Thành Vinh</h1>
+
+        <p class="job">Sinh viên Công nghệ thông tin</p>
+
+        <p class="intro">
+            Xin chào! Mình là Vinh, sinh viên ngành Công nghệ thông tin
+            tại Đại học Văn Lang.
+            Mình yêu thích lập trình web và mong muốn tạo ra những
+            giao diện đơn giản, dễ sử dụng.
+        </p>
+
+        <h2 class="skills-title">Kỹ năng</h2>
+
+        <ul class="skills">
+            <li class="skill">HTML</li>
+            <li class="skill">CSS</li>
+            <li class="skill">Java cơ bản</li>
+            <li class="skill">Làm việc nhóm</li>
+        </ul>
+
+        <a class="btn" href="mailto:ban@example.com">Liên hệ</a>
+    </div>
+</body>
+</html>
