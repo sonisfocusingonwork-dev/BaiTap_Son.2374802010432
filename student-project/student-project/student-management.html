@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài tập: Quản Lý Sinh Viên</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Bài Tập: Quản Lý Sinh Viên</h1>
+
+  <!-- Ô nhập liệu: dùng chung cho cả Thêm và Sửa -->
+  <div class="form-nhap">
+    <input type="text" id="mssv" placeholder="Mã SV (VD: SV001)">
+    <input type="text" id="hoten" placeholder="Họ tên">
+    <input type="text" id="lop" placeholder="Lớp (VD: CNTT01)">
+    <button id="btnThem" onclick="luuSinhVien()">Thêm</button>
+  </div>
+
+  <!-- NÂNG CAO: Ô tìm kiếm sinh viên -->
+  <div class="form-timkiem" style="margin: 15px 0;">
+    <input type="text" id="tuKhoa" placeholder="Tìm theo Mã SV hoặc Họ tên..." oninput="hienThiDanhSach()" style="width: 100%; padding: 8px; box-sizing: border-box;">
+  </div>
+
+  <!-- BẢNG DANH SÁCH -->
+  <table>
+    <thead>
+      <tr>
+        <th>Mã SV</th>
+        <th>Họ tên</th>
+        <th>Lớp</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- Các dòng sinh viên sẽ được JS điền vào đây -->
+    </tbody>
+  </table>
+</div>
+
+<script>
+  const STORAGE_KEY = "DANH_SACH_SINH_VIEN";
+
+  // Đọc dữ liệu từ localStorage, nếu chưa có mới dùng dữ liệu mẫu
+  let danhSachSV = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
+    { mssv: "SV001", hoten: "Nguyễn Văn A", lop: "CNTT01" },
+    { mssv: "SV002", hoten: "Trần Thị B",  lop: "CNTT02" },
+    { mssv: "SV003", hoten: "Lê Văn C",    lop: "CNTT01" }
+  ];
+
+  let dangSuaId = null;
+
+  const oMssv = document.getElementById("mssv");
+  const oHoten = document.getElementById("hoten");
+  const oLop = document.getElementById("lop");
+  const oBtnThem = document.getElementById("btnThem");
+  const oTableBody = document.getElementById("tableBody");
+  const oTuKhoa = document.getElementById("tuKhoa");
+
+  // Hàm phụ trợ: Lưu vào localStorage và cập nhật bảng
+  function dongBoDuLieu() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(danhSachSV));
+    hienThiDanhSach();
+  }
+
+  // TODO 1: Tìm vị trí sinh viên theo mã SV
+  function timViTri(mssv) {
+    for (let i = 0; i < danhSachSV.length; i++) {
+      if (danhSachSV[i].mssv.toLowerCase() === mssv.toLowerCase()) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  // TODO 2: Hiển thị danh sách (kết hợp lọc tìm kiếm)
+  function hienThiDanhSach() {
+    let html = "";
+    const tuKhoa = oTuKhoa ? oTuKhoa.value.trim().toLowerCase() : "";
+
+    for (let i = 0; i < danhSachSV.length; i++) {
+      const { mssv, hoten, lop } = danhSachSV[i];
+
+      // Nếu có nhập từ khóa thì kiểm tra khớp Mã SV hoặc Họ tên
+      if (
+        tuKhoa !== "" &&
+        !mssv.toLowerCase().includes(tuKhoa) &&
+        !hoten.toLowerCase().includes(tuKhoa)
+      ) {
+        continue;
+      }
+
+      html += `
+        <tr>
+          <td>${mssv}</td>
+          <td>${hoten}</td>
+          <td>${lop}</td>
+          <td>
+            <button class="btn-sua" onclick="suaSinhVien('${mssv}')">Sửa</button>
+            <button class="btn-xoa" onclick="xoaSinhVien('${mssv}')">Xóa</button>
+          </td>
+        </tr>`;
+    }
+    oTableBody.innerHTML = html;
+  }
+
+  // TODO 3: Thêm mới / Cập nhật kèm Validate dữ liệu
+  function luuSinhVien() {
+    const mssv = oMssv.value.trim();
+    const hoten = oHoten.value.trim();
+    const lop = oLop.value.trim();
+
+    // 1. Validate để trống
+    if (!mssv || !hoten || !lop) {
+      alert("Vui lòng nhập đầy đủ Mã SV, Họ tên và Lớp!");
+      return;
+    }
+
+    const viTriTrung = timViTri(mssv);
+
+    if (dangSuaId === null) {
+      // 2. Validate trùng mã khi Thêm mới
+      if (viTriTrung !== -1) {
+        alert(`Mã sinh viên "${mssv}" đã tồn tại!`);
+        oMssv.focus();
+        return;
+      }
+      danhSachSV.push({ mssv, hoten, lop });
+    } else {
+      // 3. Validate trùng mã khi Cập nhật (tránh đổi sang mã của SV khác)
+      const viTriDangSua = timViTri(dangSuaId);
+      if (viTriTrung !== -1 && viTriTrung !== viTriDangSua) {
+        alert(`Mã sinh viên "${mssv}" đã thuộc về sinh viên khác!`);
+        oMssv.focus();
+        return;
+      }
+      if (viTriDangSua !== -1) {
+        danhSachSV[viTriDangSua] = { mssv, hoten, lop };
+      }
+      dangSuaId = null;
+      oBtnThem.textContent = "Thêm";
+    }
+
+    oMssv.value = oHoten.value = oLop.value = "";
+    oMssv.focus();
+    dongBoDuLieu();
+  }
+
+  // TODO 4: Xóa sinh viên
+  function xoaSinhVien(mssv) {
+    const viTri = timViTri(mssv);
+    if (viTri === -1) return;
+
+    danhSachSV.splice(viTri, 1);
+
+    if (dangSuaId === mssv) {
+      dangSuaId = null;
+      oBtnThem.textContent = "Thêm";
+      oMssv.value = oHoten.value = oLop.value = "";
+    }
+    dongBoDuLieu();
+  }
+
+  // TODO 5: Sửa sinh viên
+  function suaSinhVien(mssv) {
+    const viTri = timViTri(mssv);
+    if (viTri === -1) return;
+
+    const sv = danhSachSV[viTri];
+    oMssv.value = sv.mssv;
+    oHoten.value = sv.hoten;
+    oLop.value = sv.lop;
+
+    dangSuaId = sv.mssv;
+    oBtnThem.textContent = "Cập nhật";
+    oHoten.focus();
+  }
+
+  hienThiDanhSach();
+</script>
+
+</body>
+</html>
